@@ -12,4 +12,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v.*.*\WebApplications\Microsoft.WebApplication.targets" Condition="'$(Solutions.VSVersion)' == '*.*'" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v*.*\WebApplications\Microsoft.WebApplication.targets" Condition="'$(Solutions.VSVersion)' == '*.*'" />
+
 </Project>
