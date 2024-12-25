@@ -1,0 +1,40 @@
+name: Deploy Frontend To GH-Pages Branch
+
+on:
+  push:
+    branches:
+      - deployment
+
+jobs:
+  copy-to-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout the deployment branch
+        uses: actions/checkout@v3
+        with:
+          ref: deployment
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      - name: Checkout or create the main branch
+        run: |
+          git fetch origin
+          if git show-ref --quiet refs/heads/gh-pages; then
+            git checkout gh-pages
+          else
+            git checkout -b gh-pages
+          fi
+
+      - name: Copy frontend folder to gh-pages branch
+        run: |
+          cp -r snap-map-frontend/* .
+          
+      - name: Commit and push changes to gh-pages branch
+        run: |
+          git add .
+          git commit -m "Update gh pages branch with contents of the snap map frontend folder"
+          git push origin gh-pages
