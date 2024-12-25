@@ -1,0 +1,6 @@
+@SnapMapBackend_HostAddress = http://localhost:5099
+
+GET {{SnapMapBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
