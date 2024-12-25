@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - deployment
-    types:
-      - merged
 
 jobs:
   copy-to-test:
